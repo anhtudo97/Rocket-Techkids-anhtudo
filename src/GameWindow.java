@@ -1,6 +1,6 @@
+import input.KeyInput;
+
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -24,50 +24,51 @@ public class GameWindow extends JFrame {
     }
 
     private void eventKeyboard() {
-        this.addKeyListener(new KeyListener() {
-            Vector2D defaultVelocity = new Vector2D(3.5f, 0);
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    gameCanvas.player.playerMove.angle += 5;
-
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    gameCanvas.player.playerMove.angle -= 5;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    defaultVelocity.set(10, 0);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    gameCanvas.player.playerShoot.isPlayerShoot = true;
-                }
-                gameCanvas.player.playerMove.velocity.set(this.defaultVelocity.rotate(gameCanvas.player.playerMove.angle));
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    //gameCanvas.player.angle = 0.0;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    //gameCanvas.player.angle = 0.0;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    defaultVelocity.set(3.5f, 0);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    gameCanvas.player.playerShoot.isPlayerShoot = false;
-                }
-                gameCanvas.player.playerMove.velocity.set(this.defaultVelocity.rotate(gameCanvas.player.playerMove.angle));
-
-            }
-        });
+        this.addKeyListener(KeyInput.instance);
+//        this.addKeyListener(new KeyListener() {
+//            base.Vector2D defaultVelocity = new base.Vector2D(3.5f, 0);
+//            @Override
+//            public void keyTyped(KeyEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//
+//                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+//                    gameCanvas.player.playerMove.angle += 5;
+//
+//                }
+//                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+//                    gameCanvas.player.playerMove.angle -= 5;
+//                }
+//                if (e.getKeyCode() == KeyEvent.VK_UP) {
+//                    defaultVelocity.set(10, 0);
+//                }
+//                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+//                    gameCanvas.player.playerShoot.isPlayerShoot = true;
+//                }
+//                gameCanvas.player.playerMove.velocity.set(this.defaultVelocity.rotate(gameCanvas.player.playerMove.angle));
+//            }
+//
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+//                    //gameCanvas.player.angle = 0.0;
+//                }
+//                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+//                    //gameCanvas.player.angle = 0.0;
+//                }
+//                if (e.getKeyCode() == KeyEvent.VK_UP) {
+//                    defaultVelocity.set(3.5f, 0);
+//                }
+//                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+//                    gameCanvas.player.playerShoot.isPlayerShoot = false;
+//                }
+//                gameCanvas.player.playerMove.velocity.set(this.defaultVelocity.rotate(gameCanvas.player.playerMove.angle));
+//
+//            }
+//        });
     }
 
     private void windowEvent() {

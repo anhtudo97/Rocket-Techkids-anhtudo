@@ -1,3 +1,7 @@
+package base;
+
+import renderer.Renderer;
+
 import java.awt.*;
 
 public class GameObject {
@@ -12,6 +16,7 @@ public class GameObject {
     }
 
     public void render(Graphics graphics) {
+        if(this.renderer==null)return;
         this.renderer.render(graphics, this.position);
     }
 }

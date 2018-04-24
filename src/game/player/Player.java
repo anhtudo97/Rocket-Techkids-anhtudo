@@ -1,3 +1,9 @@
+package game.player;
+
+import base.GameObject;
+import base.Vector2D;
+import renderer.PolygonRenderer;
+
 import java.awt.*;
 
 public class Player extends GameObject {
@@ -21,12 +27,5 @@ public class Player extends GameObject {
         this.playerMove.run(this);
         ((PolygonRenderer)this.renderer).angle = this.playerMove.angle;
         this.playerShoot.run(this);
-        this.playerShoot.bulletPlayers.forEach(bulletPlayer -> bulletPlayer.run());
-    }
-
-    @Override
-    public void render(Graphics graphics) {
-        super.render(graphics);
-        this.playerShoot.bulletPlayers.forEach(bulletPlayer -> bulletPlayer.render(graphics));
     }
 }

@@ -1,3 +1,9 @@
+package game.enemy;
+
+import base.FrameCounter;
+import base.Vector2D;
+import game.enemy.bullet.BulletEnemy;
+
 import java.util.ArrayList;
 import java.util.List;
 

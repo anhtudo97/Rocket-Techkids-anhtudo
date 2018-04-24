@@ -1,6 +1,12 @@
+package game.player.bullet;
+
+import base.GameObject;
+import base.Vector2D;
+import renderer.ImageRenderer;
+
 import java.awt.*;
 
-public class BulletPlayer extends GameObject{
+public class BulletPlayer extends GameObject {
     public Vector2D velocity;
 
     // constructor
