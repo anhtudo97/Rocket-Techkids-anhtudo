@@ -37,14 +37,14 @@ public class Player extends GameObject {
     }
 
     private void checkCollision() {
-        Enemy enemy = GameObjectManager.instance.checkCollision(this.boxCollider);
+        Enemy enemy = GameObjectManager.instance.checkCollisionEnemy(this.boxCollider);
         if (enemy != null) {
             this.getHit();
             enemy.getHit();
         }
     }
 
-    private void getHit() {
+    public void getHit() {
         this.isAlive = false;
     }
 }

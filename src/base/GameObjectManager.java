@@ -49,7 +49,7 @@ public class GameObjectManager {
                 .orElse(null);
     }
 
-    public Enemy checkCollision(BoxCollider boxCollider) {
+    public Enemy checkCollisionEnemy(BoxCollider boxCollider) {
         return (Enemy) this.list
                 .stream()
                 .filter(gameObject -> gameObject instanceof Enemy)
@@ -61,6 +61,21 @@ public class GameObjectManager {
                 .findFirst()
                 .orElse(null);
     }
+
+    public Player checkCollisionPlayer(BoxCollider boxCollider) {
+        return (Player) this.list
+                .stream()
+                .filter(gameObject -> gameObject instanceof Player)
+                .filter(gameObject -> gameObject.isAlive)
+                .filter(gameObject -> {
+                    BoxCollider other = ((Player) gameObject).boxCollider;
+                    return boxCollider.checkBoxCollider(other);
+                })
+                .findFirst()
+                .orElse(null);
+    }
+
+
 
 
 }

@@ -7,8 +7,6 @@ import game.enemy.Enemy;
 import physic.BoxCollider;
 import renderer.ImageRenderer;
 
-import java.awt.*;
-
 public class BulletPlayer extends GameObject {
     public Vector2D velocity;
     public BoxCollider boxCollider;
@@ -28,7 +26,7 @@ public class BulletPlayer extends GameObject {
     }
 
     private void checkCollision() {
-        Enemy enemy = GameObjectManager.instance.checkCollision(this.boxCollider);
+        Enemy enemy = GameObjectManager.instance.checkCollisionEnemy(this.boxCollider);
         if(enemy != null){
             enemy.getHit();
             this.getHit();
