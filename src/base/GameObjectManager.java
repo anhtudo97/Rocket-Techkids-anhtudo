@@ -1,6 +1,8 @@
 package base;
 
+import game.enemy.Enemy;
 import game.player.Player;
+import physic.BoxCollider;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,13 +26,19 @@ public class GameObjectManager {
     }
 
     public void runAll() {
-        this.list.forEach(gameObject -> gameObject.run());
+        this.list
+                .stream()
+                .filter(gameObject -> gameObject.isAlive)
+                .forEach(gameObject -> gameObject.run());
         this.list.addAll(tempList);
         this.tempList.clear();
     }
 
     public void renderAll(Graphics graphics) {
-        this.list.forEach(gameObject -> gameObject.render(graphics));
+        this.list
+                .stream()
+                .filter(gameObject -> gameObject.isAlive)
+                .forEach(gameObject -> gameObject.render(graphics));
     }
 
     public Player findPlayer() {
@@ -40,4 +48,19 @@ public class GameObjectManager {
                 .findFirst()
                 .orElse(null);
     }
+
+    public Enemy checkCollision(BoxCollider boxCollider) {
+        return (Enemy) this.list
+                .stream()
+                .filter(gameObject -> gameObject instanceof Enemy)
+                .filter(gameObject -> gameObject.isAlive)
+                .filter(gameObject -> {
+                    BoxCollider other = ((Enemy) gameObject).boxCollider;
+                    return boxCollider.checkBoxCollider(other);
+                })
+                .findFirst()
+                .orElse(null);
+    }
+
+
 }

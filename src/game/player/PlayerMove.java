@@ -1,6 +1,7 @@
 package game.player;
 
 import base.Vector2D;
+import input.KeyInput;
 
 import java.util.Random;
 

@@ -1,5 +1,6 @@
 package game.player;
 
+import base.FrameCounter;
 import base.GameObjectManager;
 import base.Vector2D;
 import game.player.bullet.BulletPlayer;

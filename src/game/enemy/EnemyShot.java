@@ -1,6 +1,7 @@
 package game.enemy;
 
 import base.FrameCounter;
+import base.GameObjectManager;
 import base.Vector2D;
 import game.enemy.bullet.BulletEnemy;
 
@@ -24,7 +25,7 @@ public class EnemyShot {
                 bulletEnemy.position.set(enemy.position);
                 Vector2D rotate = vector2D.rotate(i * 45);
                 bulletEnemy.velocity.set(rotate);
-                this.bulletEnemies.add(bulletEnemy);
+                GameObjectManager.instance.add(bulletEnemy);
             }
             this.frameCounter.reset();
         }

@@ -4,14 +4,11 @@ import game.enemy.EnemySqwaner;
 import game.player.Player;
 import game.star.StarSqwaner;
 import input.KeyInput;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GameCanvas extends JPanel {
-
-    public Player player;
 
     private BufferedImage backBuffered;
     private Graphics graphics;
@@ -36,9 +33,9 @@ public class GameCanvas extends JPanel {
     }
 
     private void setupPlayer(){
-        this.player = new Player();
-        this.player.position.set(200, 200);
-        GameObjectManager.instance.add(this.player);
+        Player player = new Player();
+        player.position.set(200, 200);
+        GameObjectManager.instance.add(player);
     }
 
     @Override
