@@ -26,8 +26,7 @@ public class BulletEnemy extends GameObject {
     }
 
     private void checkCollision() {
-        Player player = GameObjectManager.instance.checkCollisionPlayer(this.boxCollider);
-        if(player != null){
+        Player player = GameObjectManager.instance.checkCollisionPlayer(this.boxCollider);if(player != null){
             player.getHit();
             this.getHit();
         }
