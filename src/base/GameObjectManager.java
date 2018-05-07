@@ -1,10 +1,11 @@
 package base;
 
-import game.enemy.Enemy;
 import game.player.Player;
 import physic.BoxCollider;
+import physic.PhysicBody;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,38 +45,46 @@ public class GameObjectManager {
     public Player findPlayer() {
         return (Player) this.list
                 .stream()
+                .filter(gameObject -> gameObject.isAlive)
                 .filter(gameObject -> gameObject instanceof Player)
                 .findFirst()
                 .orElse(null);
     }
 
-    public Enemy checkCollisionEnemy(BoxCollider boxCollider) {
-        return (Enemy) this.list
+    public <T extends GameObject> T recycle(Class<T> cls) {
+        T gameObject = (T) this.list
                 .stream()
-                .filter(gameObject -> gameObject instanceof Enemy)
+                .filter(gameObject1 -> !gameObject1.isAlive)
+                .filter(object -> cls.isInstance(object))
+                .findFirst()
+                .orElse(null);
+        if (gameObject != null) {
+            gameObject.isAlive = true;
+        } else {
+            try {
+                gameObject = cls.getConstructor().newInstance();
+                this.add(gameObject);
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return gameObject;
+    }
+
+    public <T extends GameObject> T checkCollison(BoxCollider boxCollider, Class<T> cls) {
+        return (T) this.list
+                .stream()
+                .filter(gameObject -> cls.isInstance(gameObject))
                 .filter(gameObject -> gameObject.isAlive)
+                .filter(gameObject -> gameObject instanceof PhysicBody)
                 .filter(gameObject -> {
-                    BoxCollider other = ((Enemy) gameObject).boxCollider;
+                    BoxCollider other = ((PhysicBody) gameObject).getBoxCollider();
                     return boxCollider.checkBoxCollider(other);
                 })
                 .findFirst()
                 .orElse(null);
     }
-
-    public Player checkCollisionPlayer(BoxCollider boxCollider) {
-        return (Player) this.list
-                .stream()
-                .filter(gameObject -> gameObject instanceof Player)
-                .filter(gameObject -> gameObject.isAlive)
-                .filter(gameObject -> {
-                    BoxCollider other = ((Player) gameObject).boxCollider;
-                    return boxCollider.checkBoxCollider(other);
-                })
-                .findFirst()
-                .orElse(null);
-    }
-
-
 
 
 }

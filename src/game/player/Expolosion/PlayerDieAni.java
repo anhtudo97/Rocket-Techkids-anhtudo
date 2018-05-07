@@ -1,4 +1,4 @@
-package game.player.bullet;
+package game.player.Expolosion;
 
 import base.GameObject;
 import base.Vector2D;
@@ -11,17 +11,17 @@ import renderer.ImageRenderer;
 
 import java.awt.*;
 
-public class BulletPlayer extends GameObject implements PhysicBody, HitObject {
+public class PlayerDieAni extends GameObject implements PhysicBody, HitObject {
     public Vector2D velocity;
     public BoxCollider boxCollider;
     private RunHitObject runHitObject;
 
     // constructor
-    public BulletPlayer() {
+    public PlayerDieAni() {
         this.velocity = new Vector2D();
         this.runHitObject = new RunHitObject(Enemy.class);
         this.boxCollider = new BoxCollider(5, 5);
-        this.renderer = new ImageRenderer("resources/images/star.png", 5, 5,Color.YELLOW);
+        this.renderer = new ImageRenderer("resources/images/star.png", 12, 12,Color.ORANGE);
     }
 
     public void run() {

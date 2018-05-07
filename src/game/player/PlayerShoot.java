@@ -17,12 +17,11 @@ public class PlayerShoot {
     public void run(Player player) {
         if (this.isPlayerShoot) {
             if (this.frameCounter.run()) {
-                BulletPlayer bulletPlayer = new BulletPlayer();
+                BulletPlayer bulletPlayer = GameObjectManager.instance.recycle(BulletPlayer.class);
                 bulletPlayer.position.set(player.position);
                 Vector2D vector2D = new Vector2D(7, 0);
                 Vector2D rotate = vector2D.rotate(player.playerMove.angle);
                 bulletPlayer.velocity.set(rotate);
-                GameObjectManager.instance.add(bulletPlayer);
                 this.frameCounter.reset();
             }
         } else {

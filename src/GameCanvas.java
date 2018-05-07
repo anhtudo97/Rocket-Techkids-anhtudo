@@ -18,13 +18,11 @@ public class GameCanvas extends JPanel {
         this.setSize(1024, 600);
         this.setupBackBuffered();
 
-        GameObjectManager.instance.add(new Background());
+        GameObjectManager.instance.recycle(Background.class);
         this.setupPlayer();
-        GameObjectManager.instance.add(new StarSqwaner());
-        GameObjectManager.instance.add(new EnemySqwaner());
-
+        GameObjectManager.instance.recycle(EnemySqwaner.class);
+        GameObjectManager.instance.recycle(StarSqwaner.class).createAction();
         this.setVisible(true);
-
     }
 
     private void setupBackBuffered() {
@@ -33,9 +31,8 @@ public class GameCanvas extends JPanel {
     }
 
     private void setupPlayer(){
-        Player player = new Player();
+        Player player = GameObjectManager.instance.recycle(Player.class);
         player.position.set(200, 200);
-        GameObjectManager.instance.add(player);
     }
 
     @Override
@@ -52,9 +49,4 @@ public class GameCanvas extends JPanel {
         GameObjectManager.instance.runAll();
         KeyInput.instance.reset();
     }
-
-
-
-
-
 }

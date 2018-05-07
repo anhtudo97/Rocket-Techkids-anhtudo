@@ -1,4 +1,3 @@
-import base.GameObjectManager;
 import input.KeyInput;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -44,7 +43,6 @@ public class GameWindow extends JFrame {
                 this.gameCanvas.renderAll();
                 this.lastTime = currentTime;
             }
-            if(!GameObjectManager.instance.findPlayer().isAlive)break;
         }
     }
 }

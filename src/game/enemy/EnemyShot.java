@@ -21,11 +21,10 @@ public class EnemyShot {
         if (this.frameCounter.run()) {
             Vector2D vector2D = new Vector2D(4, 0);
             for (int i = 0; i < 8; i++) {
-                BulletEnemy bulletEnemy = new BulletEnemy();
+                BulletEnemy bulletEnemy = GameObjectManager.instance.recycle(BulletEnemy.class);
                 bulletEnemy.position.set(enemy.position);
                 Vector2D rotate = vector2D.rotate(i * 45);
                 bulletEnemy.velocity.set(rotate);
-                GameObjectManager.instance.add(bulletEnemy);
             }
             this.frameCounter.reset();
         }

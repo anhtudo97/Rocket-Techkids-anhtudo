@@ -4,6 +4,8 @@ import base.GameObject;
 import base.Vector2D;
 import renderer.ImageRenderer;
 
+import java.awt.*;
+
 public class Star extends GameObject {
 
     public Vector2D velocity;
